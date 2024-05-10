@@ -1,17 +1,6 @@
 "use client";
-import Image from "next/image";
-import FilterIcon from "../Icons/filter.svg";
 
 import React, { useState } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-} from "@nextui-org/react";
 
 function FilterModal() {
   //   const { isOpen, onOpen, onClose } = useDisclosure();
