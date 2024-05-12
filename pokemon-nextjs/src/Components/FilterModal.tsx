@@ -42,7 +42,7 @@ function FilterModal() {
     console.log("Type 2: " + type2);
     console.log("Generation: " + generation);
     console.log("Legendary: " + legendary);
-  }
+  };
 
   const handleClearFilter = () => {
     setName("");
@@ -50,14 +50,13 @@ function FilterModal() {
     setType2("");
     setGeneration("");
     setLegendary("");
-  }
+  };
 
   return (
     <div className="relative">
       <div className="mt-10">
         <div className="text-lg font-bold mb-6 text-center">Filter Pokémon</div>
         {/* Container to hold filter criterion */}
-
         {/* Pokémon name */}
         <div className="flex flex-col sm:flex-row">
           <div className="flex flex-col mr-4">
@@ -193,26 +192,30 @@ function FilterModal() {
 
           {/* Filter Submit Buttong */}
 
-        <div className="flex flex-col">
-
-        <div className="flex flex-col">
-            <button className="bg-teal-500 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded-md mt-2" onClick={handleFilterSubmit}>
-              Apply
-            </button>
-          </div>
-
           <div className="flex flex-col">
-            <button className="bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md mt-2" onClick={handleClearFilter}>
-              Clear
-            </button>
+            <div className="flex flex-col">
+              <button
+                className="bg-teal-500 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded-md mt-2"
+                onClick={handleFilterSubmit}
+              >
+                Apply
+              </button>
+            </div>
+
+            <div className="flex flex-col">
+              <button
+                className="bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md mt-2"
+                onClick={handleClearFilter}
+              >
+                Clear
+              </button>
+            </div>
           </div>
         </div>
-        
+        <div className="border-t-2 border-gray-300 w-full mt-6"></div>{" "}
+        {/* Horizontal line */}
       </div>
-      <div className="border-t-2 border-gray-300 w-full mt-6"></div> {/* Horizontal line */}
-
     </div>
-  </div>
   );
 }
 export default FilterModal;

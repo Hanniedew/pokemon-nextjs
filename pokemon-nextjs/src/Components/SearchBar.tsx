@@ -5,16 +5,23 @@ import SearchIcon from "../Icons/search.svg";
 import FilterModal from "./FilterModal";
 import { useState } from "react";
 
-function SearchBar() {
+function SearchBar({
+  searchValue,
+  setSearchValue,
+}: {
+  searchValue: String;
+  setSearchValue: (value: string) => void;
+}) {
   const [isFilterClicked, setIsFilterClicked] = useState(false);
   const handleFilter = () => {
     console.log("Filter button clicked");
     setIsFilterClicked(!isFilterClicked);
   };
 
-  const handleSearch = () => {
-    console.log("Search button clicked");
-  };
+  // const handleSearch = () => {
+  //   console.log("Search button clicked");
+  //   console.log("Search value: " + searchValue);
+  // };
 
   return (
     <div className="flex justify-center">
@@ -27,6 +34,7 @@ function SearchBar() {
             type="text"
             className="w-full text-lg h-12 px-8 py-3 pr-36 border border-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search..."
+            onChange={(e) => setSearchValue(e.target.value)}
           />
           {/* Vertical Pipe */}
           <div className="absolute right-28 sm:right-32 h-full flex items-center">
@@ -48,7 +56,7 @@ function SearchBar() {
             </div>
           </div>
           {/* Second Icon */}
-          <div className="absolute right-8 h-full flex items-center  cursor-pointer">
+          {/* <div className="absolute right-8 h-full flex items-center  cursor-pointer">
             <div className="flex items-center">
               <button onClick={handleSearch}>
                 <Image
@@ -59,7 +67,7 @@ function SearchBar() {
                 />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* Filter Modal */}
         {isFilterClicked && <FilterModal />}

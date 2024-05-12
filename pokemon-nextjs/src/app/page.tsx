@@ -24,25 +24,7 @@ interface Pokemon {
 
 export default function Home() {
   const [data, setData] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:5000/pokemons");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-        // setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        // setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
+  const [searchValue, setSearchValue] = useState(""); // for search bar
 
   console.log(data);
 
@@ -58,9 +40,31 @@ export default function Home() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const visiblePokemons = data.slice(startIndex, startIndex + itemsPerPage);
 
+  // const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/pokemons?name=${searchValue}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+        // setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [searchValue]);
+
   return (
     <>
-      <SearchBar />
+      <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <div className="flex justify-center items-center mt-8 mb-8">
         <h1 className="text-2xl">Pokémons</h1>
@@ -72,7 +76,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-4 ml-8 mr-8">
         {visiblePokemons.map((pokemon: Pokemon) => (
           <div key={pokemon.id} className="flex justify-center items-center">
-            <PokemonCard name={pokemon.name} />
+            <PokemonCard name={pokemon.name} id={pokemon.id} />
           </div>
         ))}
       </div>
