@@ -1,43 +1,65 @@
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
 
-import { useState } from 'react';
+import { useState, ChangeEvent } from "react";
 
 function FilterModal() {
+  const [name, setName] = useState("");
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
 
-  const [type1, setType1] = useState('');
-
+  const [type1, setType1] = useState("");
   const handleType1Change = (event: SelectChangeEvent) => {
     setType1(event.target.value);
   };
 
-  const [type2, setType2] = useState('');
-
+  const [type2, setType2] = useState("");
   const handleType2Change = (event: SelectChangeEvent) => {
     setType2(event.target.value);
   };
 
-  const [generation, setGeneration] = useState('');
-
+  const [generation, setGeneration] = useState("");
   const handleGenChange = (event: SelectChangeEvent) => {
     setGeneration(event.target.value);
   };
+
+  const [legendary, setLegendary] = useState("");
+  const handlelegendaryChange = (event: SelectChangeEvent) => {
+    setLegendary(event.target.value);
+  };
+
+  const handleFilterSubmit = () => {
+    console.log("Filtering Pokémon");
+    console.log("Name: " + name);
+    console.log("Type 1: " + type1);
+    console.log("Type 2: " + type2);
+    console.log("Generation: " + generation);
+    console.log("Legendary: " + legendary);
+  }
+
+  const handleClearFilter = () => {
+    setName("");
+    setType1("");
+    setType2("");
+    setGeneration("");
+    setLegendary("");
+  }
+
   return (
-   
     <div className="relative">
       <div className="mt-10">
-        
         <div className="text-lg font-bold mb-6 text-center">Filter Pokémon</div>
         {/* Container to hold filter criterion */}
 
         {/* Pokémon name */}
-        <div className="flex flex-row"> 
+        <div className="flex flex-col sm:flex-row">
           <div className="flex flex-col mr-4">
             <label className="text-gray-700 mb-2 ml-3">Pokémon name:</label>
             <input
@@ -45,10 +67,12 @@ function FilterModal() {
               type="text"
               className="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-full focus:outline-none"
               placeholder="Enter Pokémon name"
+              value={name}
+              onChange={handleNameChange}
             />
           </div>
 
-        {/* Type 1 */}
+          {/* Type 1 */}
           <div className="flex flex-col mr-4">
             <label className="text-gray-700 ml-3">Type 1:</label>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -56,29 +80,29 @@ function FilterModal() {
                 value={type1}
                 onChange={handleType1Change}
                 displayEmpty
-                sx={{ height: '40px', width: '150px' }}
+                sx={{ height: "40px", width: "150px" }}
               >
                 <MenuItem value="">
                   <em>Please select</em>
                 </MenuItem>
-                <MenuItem value={1}>Ice</MenuItem>
-                <MenuItem value={2}>Water</MenuItem>
-                <MenuItem value={3}>Grass</MenuItem>
-                <MenuItem value={4}>Dragon</MenuItem>
-                <MenuItem value={5}>Fairy</MenuItem>
-                <MenuItem value={6}>Electric</MenuItem>
-                <MenuItem value={7}>Normal</MenuItem>
-                <MenuItem value={8}>Physic</MenuItem>
-                <MenuItem value={9}>Bug</MenuItem>
-                <MenuItem value={10}>Fire</MenuItem>
-                <MenuItem value={11}>Poison</MenuItem>
-                <MenuItem value={12}>Steel</MenuItem>
-                <MenuItem value={13}>Fighting</MenuItem>
-                <MenuItem value={14}>Flying</MenuItem>
-                <MenuItem value={15}>Dark</MenuItem>
-                <MenuItem value={16}>Ground</MenuItem>
-                <MenuItem value={17}>Ghost</MenuItem>
-                <MenuItem value={18}>Rock</MenuItem>
+                <MenuItem value="ice">Ice</MenuItem>
+                <MenuItem value="water">Water</MenuItem>
+                <MenuItem value="grass">Grass</MenuItem>
+                <MenuItem value="dragon">Dragon</MenuItem>
+                <MenuItem value="fairy">Fairy</MenuItem>
+                <MenuItem value="electric">Electric</MenuItem>
+                <MenuItem value="normal">Normal</MenuItem>
+                <MenuItem value="psychic">Psychic</MenuItem>
+                <MenuItem value="bug">Bug</MenuItem>
+                <MenuItem value="fire">Fire</MenuItem>
+                <MenuItem value="poison">Poison</MenuItem>
+                <MenuItem value="steel">Steel</MenuItem>
+                <MenuItem value="fighting">Fighting</MenuItem>
+                <MenuItem value="flying">Flying</MenuItem>
+                <MenuItem value="dark">Dark</MenuItem>
+                <MenuItem value="ground">Ground</MenuItem>
+                <MenuItem value="ghost">Ghost</MenuItem>
+                <MenuItem value="rock">Rock</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -91,33 +115,33 @@ function FilterModal() {
                 value={type2}
                 onChange={handleType2Change}
                 displayEmpty
-                sx={{ height: '40px', width: '150px' }}
+                sx={{ height: "40px", width: "150px" }}
               >
                 <MenuItem value="">
                   <em>Please select</em>
                 </MenuItem>
-                <MenuItem value={1}>Ice</MenuItem>
-                <MenuItem value={2}>Water</MenuItem>
-                <MenuItem value={3}>Grass</MenuItem>
-                <MenuItem value={4}>Dragon</MenuItem>
-                <MenuItem value={5}>Fairy</MenuItem>
-                <MenuItem value={6}>Electric</MenuItem>
-                <MenuItem value={7}>Normal</MenuItem>
-                <MenuItem value={8}>Physic</MenuItem>
-                <MenuItem value={9}>Bug</MenuItem>
-                <MenuItem value={10}>Fire</MenuItem>
-                <MenuItem value={11}>Poison</MenuItem>
-                <MenuItem value={12}>Steel</MenuItem>
-                <MenuItem value={13}>Fighting</MenuItem>
-                <MenuItem value={14}>Flying</MenuItem>
-                <MenuItem value={15}>Dark</MenuItem>
-                <MenuItem value={16}>Ground</MenuItem>
-                <MenuItem value={17}>Ghost</MenuItem>
-                <MenuItem value={18}>Rock</MenuItem>
+                <MenuItem value="ice">Ice</MenuItem>
+                <MenuItem value="water">Water</MenuItem>
+                <MenuItem value="grass">Grass</MenuItem>
+                <MenuItem value="dragon">Dragon</MenuItem>
+                <MenuItem value="fairy">Fairy</MenuItem>
+                <MenuItem value="electric">Electric</MenuItem>
+                <MenuItem value="normal">Normal</MenuItem>
+                <MenuItem value="psychic">Psychic</MenuItem>
+                <MenuItem value="bug">Bug</MenuItem>
+                <MenuItem value="fire">Fire</MenuItem>
+                <MenuItem value="poison">Poison</MenuItem>
+                <MenuItem value="steel">Steel</MenuItem>
+                <MenuItem value="fighting">Fighting</MenuItem>
+                <MenuItem value="flying">Flying</MenuItem>
+                <MenuItem value="dark">Dark</MenuItem>
+                <MenuItem value="ground">Ground</MenuItem>
+                <MenuItem value="ghost">Ghost</MenuItem>
+                <MenuItem value="rock">Rock</MenuItem>
               </Select>
             </FormControl>
           </div>
-          
+
           {/* Generation */}
           <div className="flex flex-col mr-6">
             <label className="text-gray-700 ml-3">Generation:</label>
@@ -126,7 +150,7 @@ function FilterModal() {
                 value={generation}
                 onChange={handleGenChange}
                 displayEmpty
-                sx={{ height: '40px', width: '150px' }}
+                sx={{ height: "40px", width: "150px" }}
               >
                 <MenuItem value="">
                   <em>Please select</em>
@@ -137,29 +161,58 @@ function FilterModal() {
                 <MenuItem value={4}>4</MenuItem>
                 <MenuItem value={5}>5</MenuItem>
                 <MenuItem value={6}>6</MenuItem>
-                
               </Select>
             </FormControl>
           </div>
 
           {/* Legendary */}
-          <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Legendary</FormLabel>
-            <RadioGroup
-              aria-labelledby="legendary-radio-buttons-group-label"
-              name="legendary-radio-buttons-group"
-            >
-              <FormControlLabel value="true" control={<Radio />} label="True" />
-              <FormControlLabel value="false" control={<Radio />} label="False" />
-            </RadioGroup>
-          </FormControl>
-        
+          <div className="flex flex-col mr-6">
+            <FormControl>
+              <FormLabel id="demo-radio-buttons-group-label">
+                Legendary
+              </FormLabel>
+              <RadioGroup
+                aria-labelledby="legendary-radio-buttons-group-label"
+                name="legendary-radio-buttons-group"
+                value={legendary}
+                onChange={handlelegendaryChange}
+              >
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="True"
+                />
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="False"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+
+          {/* Filter Submit Buttong */}
+
+        <div className="flex flex-col">
+
+        <div className="flex flex-col">
+            <button className="bg-teal-500 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded-md mt-2" onClick={handleFilterSubmit}>
+              Apply
+            </button>
+          </div>
+
+          <div className="flex flex-col">
+            <button className="bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md mt-2" onClick={handleClearFilter}>
+              Clear
+            </button>
+          </div>
         </div>
         
       </div>
+      <div className="border-t-2 border-gray-300 w-full mt-6"></div> {/* Horizontal line */}
+
     </div>
-     
-     
+  </div>
   );
 }
 export default FilterModal;
