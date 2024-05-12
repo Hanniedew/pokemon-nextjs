@@ -42,7 +42,7 @@ function SearchBar({
           </div>
 
           {/* First Icon */}
-          <div className="absolute right-16 h-full flex items-center mr-2  cursor-pointer">
+          <div className="absolute right-12 h-full flex items-center mr-2  cursor-pointer">
             <div className="flex items-center">
               {/* <FilterModal /> */}
               <button onClick={handleFilter}>

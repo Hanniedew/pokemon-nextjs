@@ -8,36 +8,62 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 
 import { useState, ChangeEvent } from "react";
+import { useFilterContext } from "../Contexts/FilterContext";
 
 function FilterModal() {
-  const [name, setName] = useState("");
-  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
+  // const [name, setName] = useState("");
+  // const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setName(event.target.value);
+  // };
 
-  const [type1, setType1] = useState("");
+  // const [type1, setType1] = useState("");
+  // const handleType1Change = (event: SelectChangeEvent) => {
+  //   setType1(event.target.value);
+  // };
+
+  // const [type2, setType2] = useState("");
+  // const handleType2Change = (event: SelectChangeEvent) => {
+  //   setType2(event.target.value);
+  // };
+
+  // const [generation, setGeneration] = useState("");
+  // const handleGenChange = (event: SelectChangeEvent) => {
+  //   setGeneration(event.target.value);
+  // };
+
+  // const [legendary, setLegendary] = useState("");
+  // const handleLegendaryChange = (event: SelectChangeEvent) => {
+  //   setLegendary(event.target.value);
+  // };
+  const {
+    type1,
+    setType1,
+    type2,
+    setType2,
+    generation,
+    setGeneration,
+    legendary,
+    setLegendary,
+  } = useFilterContext();
+
   const handleType1Change = (event: SelectChangeEvent) => {
     setType1(event.target.value);
   };
 
-  const [type2, setType2] = useState("");
   const handleType2Change = (event: SelectChangeEvent) => {
     setType2(event.target.value);
   };
 
-  const [generation, setGeneration] = useState("");
   const handleGenChange = (event: SelectChangeEvent) => {
     setGeneration(event.target.value);
   };
 
-  const [legendary, setLegendary] = useState("");
-  const handlelegendaryChange = (event: SelectChangeEvent) => {
+  const handleLegendaryChange = (event: SelectChangeEvent) => {
     setLegendary(event.target.value);
   };
 
   const handleFilterSubmit = () => {
     console.log("Filtering Pokémon");
-    console.log("Name: " + name);
     console.log("Type 1: " + type1);
     console.log("Type 2: " + type2);
     console.log("Generation: " + generation);
@@ -45,7 +71,6 @@ function FilterModal() {
   };
 
   const handleClearFilter = () => {
-    setName("");
     setType1("");
     setType2("");
     setGeneration("");
@@ -57,20 +82,7 @@ function FilterModal() {
       <div className="mt-10">
         <div className="text-lg font-bold mb-6 text-center">Filter Pokémon</div>
         {/* Container to hold filter criterion */}
-        {/* Pokémon name */}
         <div className="flex flex-col sm:flex-row">
-          <div className="flex flex-col mr-4">
-            <label className="text-gray-700 mb-2 ml-3">Pokémon name:</label>
-            <input
-              id="pokemonName"
-              type="text"
-              className="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-full focus:outline-none"
-              placeholder="Enter Pokémon name"
-              value={name}
-              onChange={handleNameChange}
-            />
-          </div>
-
           {/* Type 1 */}
           <div className="flex flex-col mr-4">
             <label className="text-gray-700 ml-3">Type 1:</label>
@@ -174,7 +186,7 @@ function FilterModal() {
                 aria-labelledby="legendary-radio-buttons-group-label"
                 name="legendary-radio-buttons-group"
                 value={legendary}
-                onChange={handlelegendaryChange}
+                onChange={handleLegendaryChange}
               >
                 <FormControlLabel
                   value="true"

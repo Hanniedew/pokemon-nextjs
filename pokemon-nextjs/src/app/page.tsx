@@ -4,6 +4,7 @@ import PokemonCard from "@/Components/PokemonCard";
 import sample from "../../public/sample.json";
 import { useState, useEffect, ChangeEvent } from "react";
 import Pagination from "@mui/material/Pagination";
+import { useFilterContext } from "../Contexts/FilterContext";
 
 interface Pokemon {
   id: number;
@@ -40,12 +41,35 @@ export default function Home() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const visiblePokemons = data.slice(startIndex, startIndex + itemsPerPage);
 
+  const {
+    type1,
+    setType1,
+    type2,
+    setType2,
+    generation,
+    setGeneration,
+    legendary,
+    setLegendary,
+  } = useFilterContext();
+
   // const [loading, setLoading] = useState(true);
   useEffect(() => {
+    const constructQueryString = () => {
+      const queryParams = [];
+      if (searchValue) queryParams.push(`name=${searchValue}`);
+      if (type1) queryParams.push(`type_1=${type1}`);
+      if (type2) queryParams.push(`type_2=${type2}`);
+      if (generation) queryParams.push(`generation=${generation}`);
+      if (legendary) queryParams.push(`legendary=${legendary}`);
+      return queryParams.join("&");
+    };
+    const queryString = constructQueryString();
+
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/pokemons?name=${searchValue}`
+          // `http://localhost:5000/pokemons?name=${searchValue}`
+          `http://localhost:5000/pokemons?${queryString}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -60,7 +84,7 @@ export default function Home() {
     }
 
     fetchData();
-  }, [searchValue]);
+  }, [type1, type2, generation, legendary, searchValue]);
 
   return (
     <>
