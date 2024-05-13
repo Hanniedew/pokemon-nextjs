@@ -7,34 +7,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 
-import { useState, ChangeEvent } from "react";
 import { useFilterContext } from "../Contexts/FilterContext";
 
 function FilterModal() {
-  // const [name, setName] = useState("");
-  // const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setName(event.target.value);
-  // };
-
-  // const [type1, setType1] = useState("");
-  // const handleType1Change = (event: SelectChangeEvent) => {
-  //   setType1(event.target.value);
-  // };
-
-  // const [type2, setType2] = useState("");
-  // const handleType2Change = (event: SelectChangeEvent) => {
-  //   setType2(event.target.value);
-  // };
-
-  // const [generation, setGeneration] = useState("");
-  // const handleGenChange = (event: SelectChangeEvent) => {
-  //   setGeneration(event.target.value);
-  // };
-
-  // const [legendary, setLegendary] = useState("");
-  // const handleLegendaryChange = (event: SelectChangeEvent) => {
-  //   setLegendary(event.target.value);
-  // };
   const {
     type1,
     setType1,
@@ -202,7 +177,7 @@ function FilterModal() {
             </FormControl>
           </div>
 
-          {/* Filter Submit Buttong */}
+          {/* Filter Submit Button */}
 
           <div className="flex flex-col">
             <div className="flex flex-col">

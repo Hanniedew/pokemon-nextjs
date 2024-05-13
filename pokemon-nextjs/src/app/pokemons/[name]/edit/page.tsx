@@ -8,7 +8,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
 function PokemonEditPage({
   params,
@@ -75,7 +75,7 @@ function PokemonEditPage({
   };
 
   const handleEditSubmit = () => {
-    console.log("Editting Pokémon");
+    console.log("Editing Pokémon");
     console.log("New Name: " + name);
     console.log("New Pokedex: " + pokedex);
     console.log("New Type 1: " + type1);
@@ -88,6 +88,21 @@ function PokemonEditPage({
     console.log("New Speed: " + speed);
     console.log("Generation: " + generation);
     console.log("Legendary: " + legendary);
+
+    const pokemonData = {
+      name,
+      pokedex,
+      type1,
+      type2,
+      Hp,
+      attack,
+      defense,
+      SpAttack,
+      SpDefense,
+      speed,
+      generation,
+      legendary,
+    };
   };
 
   const handleClearFilter = () => {
