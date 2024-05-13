@@ -27,6 +27,8 @@ function PokemonDetailsPage({
   };
 }) {
   const [pokemonDetails, setPokemonDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -40,8 +42,10 @@ function PokemonDetailsPage({
       }
       const jsonData = await response.json();
       setPokemonDetails(jsonData);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setLoading(false);
     }
   }
   console.log(pokemonDetails);
@@ -53,7 +57,9 @@ function PokemonDetailsPage({
 
       <div className="flex justify-center">
         <div className="grid grid-cols-1">
-          {pokemonDetails.length > 0 ? (
+          {loading ? (
+            <div className="text-2xl mt-24">Loading...</div>
+          ) : pokemonDetails.length > 0 ? (
             pokemonDetails.map((pokemon: Pokemon) => (
               <PokemonDetailsCard key={pokemon.id} pokemon={pokemon} />
             ))
@@ -62,9 +68,6 @@ function PokemonDetailsPage({
           )}
         </div>
       </div>
-      {/* <div>
-        <div>Ppokemon {params.name}</div>
-      </div> */}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import sample from "../../public/sample.json";
 import { useState, useEffect, ChangeEvent } from "react";
 import Pagination from "@mui/material/Pagination";
 import { useFilterContext } from "../Contexts/FilterContext";
+import Link from "next/link";
 
 interface Pokemon {
   id: number;
@@ -92,7 +93,7 @@ export default function Home() {
 
       <div className="flex justify-center items-center mt-8 mb-8">
         <h1 className="text-2xl">Pokémons</h1>
-        <button className="ml-4 bg-violet-400 hover:bg-violet-800 text-white px-4 py-2 rounded-lg">
+        <button className="ml-4 bg-violet-600 hover:bg-violet-800 text-white px-4 py-2 rounded-lg">
           Add Pokémon
         </button>
       </div>
