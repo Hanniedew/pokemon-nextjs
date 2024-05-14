@@ -9,7 +9,7 @@ function PokemonCard({ name, id }: { name: string; id: number }) {
       });
       if (response.ok) {
         // Handle success, like updating UI or refreshing data
-        window.location.reload();
+        // window.location.reload();
         console.log("Pokemon deleted successfully");
       } else {
         // Handle error

@@ -85,7 +85,7 @@ export default function Home() {
     }
 
     fetchData();
-  }, [type1, type2, generation, legendary, searchValue]);
+  }, [type1, type2, generation, legendary, searchValue, data]);
 
   return (
     <>
