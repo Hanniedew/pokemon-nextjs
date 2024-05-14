@@ -8,7 +8,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 
 function PokemonEditPage({
   params,
@@ -17,6 +18,7 @@ function PokemonEditPage({
     name: string;
   };
 }) {
+  const router = useRouter();
   const [name, setName] = useState("");
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -74,7 +76,8 @@ function PokemonEditPage({
     setLegendary(event.target.value);
   };
 
-  const handleEditSubmit = () => {
+  const handleEditSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     console.log("Editing Pokémon");
     console.log("New Name: " + name);
     console.log("New Pokedex: " + pokedex);
@@ -103,6 +106,35 @@ function PokemonEditPage({
       generation,
       legendary,
     };
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/pokemons/${params.name}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(pokemonData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update Pokémon");
+      }
+
+      console.log("Pokémon updated successfully");
+      if (name) {
+        router.push(`/pokemons/${name}`);
+      } else {
+        router.push(`/pokemons/${params.name}`);
+      }
+
+      // Optionally, handle success response
+    } catch (error) {
+      console.error("Error updating Pokémon:", error);
+      // Optionally, handle error
+    }
   };
 
   const handleClearFilter = () => {
@@ -165,31 +197,31 @@ function PokemonEditPage({
               <MenuItem value="">
                 <em>Select New Type 1</em>
               </MenuItem>
-              <MenuItem value="ice">Ice</MenuItem>
-              <MenuItem value="water">Water</MenuItem>
-              <MenuItem value="grass">Grass</MenuItem>
-              <MenuItem value="dragon">Dragon</MenuItem>
-              <MenuItem value="fairy">Fairy</MenuItem>
-              <MenuItem value="electric">Electric</MenuItem>
-              <MenuItem value="normal">Normal</MenuItem>
-              <MenuItem value="psychic">Psychic</MenuItem>
-              <MenuItem value="bug">Bug</MenuItem>
-              <MenuItem value="fire">Fire</MenuItem>
-              <MenuItem value="poison">Poison</MenuItem>
-              <MenuItem value="steel">Steel</MenuItem>
-              <MenuItem value="fighting">Fighting</MenuItem>
-              <MenuItem value="flying">Flying</MenuItem>
-              <MenuItem value="dark">Dark</MenuItem>
-              <MenuItem value="ground">Ground</MenuItem>
-              <MenuItem value="ghost">Ghost</MenuItem>
-              <MenuItem value="rock">Rock</MenuItem>
+              <MenuItem value="Ice">Ice</MenuItem>
+              <MenuItem value="Water">Water</MenuItem>
+              <MenuItem value="Grass">Grass</MenuItem>
+              <MenuItem value="Dragon">Dragon</MenuItem>
+              <MenuItem value="Fairy">Fairy</MenuItem>
+              <MenuItem value="Electric">Electric</MenuItem>
+              <MenuItem value="Normal">Normal</MenuItem>
+              <MenuItem value="Psychic">Psychic</MenuItem>
+              <MenuItem value="Bug">Bug</MenuItem>
+              <MenuItem value="Fire">Fire</MenuItem>
+              <MenuItem value="Poison">Poison</MenuItem>
+              <MenuItem value="Steel">Steel</MenuItem>
+              <MenuItem value="Fighting">Fighting</MenuItem>
+              <MenuItem value="Flying">Flying</MenuItem>
+              <MenuItem value="Dark">Dark</MenuItem>
+              <MenuItem value="Ground">Ground</MenuItem>
+              <MenuItem value="Ghost">Ghost</MenuItem>
+              <MenuItem value="Rock">Rock</MenuItem>
             </Select>
           </FormControl>
         </div>
 
         {/* Type 2 */}
         <div className="flex flex-col mr-4">
-          <FormControl sx={{ m: 1, minWidth: 120, marginBottom: 2 }}>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
             <Select
               value={type2}
               onChange={handleType2Change}
@@ -199,26 +231,30 @@ function PokemonEditPage({
               <MenuItem value="">
                 <em>Select New Type 2</em>
               </MenuItem>
-              <MenuItem value="ice">Ice</MenuItem>
-              <MenuItem value="water">Water</MenuItem>
-              <MenuItem value="grass">Grass</MenuItem>
-              <MenuItem value="dragon">Dragon</MenuItem>
-              <MenuItem value="fairy">Fairy</MenuItem>
-              <MenuItem value="electric">Electric</MenuItem>
-              <MenuItem value="normal">Normal</MenuItem>
-              <MenuItem value="psychic">Psychic</MenuItem>
-              <MenuItem value="bug">Bug</MenuItem>
-              <MenuItem value="fire">Fire</MenuItem>
-              <MenuItem value="poison">Poison</MenuItem>
-              <MenuItem value="steel">Steel</MenuItem>
-              <MenuItem value="fighting">Fighting</MenuItem>
-              <MenuItem value="flying">Flying</MenuItem>
-              <MenuItem value="dark">Dark</MenuItem>
-              <MenuItem value="ground">Ground</MenuItem>
-              <MenuItem value="ghost">Ghost</MenuItem>
-              <MenuItem value="rock">Rock</MenuItem>
+              <MenuItem value="NA">NA</MenuItem>
+              <MenuItem value="Ice">Ice</MenuItem>
+              <MenuItem value="Water">Water</MenuItem>
+              <MenuItem value="Grass">Grass</MenuItem>
+              <MenuItem value="Dragon">Dragon</MenuItem>
+              <MenuItem value="Fairy">Fairy</MenuItem>
+              <MenuItem value="Electric">Electric</MenuItem>
+              <MenuItem value="Normal">Normal</MenuItem>
+              <MenuItem value="Psychic">Psychic</MenuItem>
+              <MenuItem value="Bug">Bug</MenuItem>
+              <MenuItem value="Fire">Fire</MenuItem>
+              <MenuItem value="Poison">Poison</MenuItem>
+              <MenuItem value="Steel">Steel</MenuItem>
+              <MenuItem value="Fighting">Fighting</MenuItem>
+              <MenuItem value="Flying">Flying</MenuItem>
+              <MenuItem value="Dark">Dark</MenuItem>
+              <MenuItem value="Ground">Ground</MenuItem>
+              <MenuItem value="Ghost">Ghost</MenuItem>
+              <MenuItem value="Rock">Rock</MenuItem>
             </Select>
           </FormControl>
+          <div className="text-xs ml-3 mb-2 italic">
+            Select NA to remove type 2
+          </div>
         </div>
 
         {/* HP */}

@@ -71,24 +71,24 @@ function FilterModal() {
                 <MenuItem value="">
                   <em>Please select</em>
                 </MenuItem>
-                <MenuItem value="ice">Ice</MenuItem>
-                <MenuItem value="water">Water</MenuItem>
-                <MenuItem value="grass">Grass</MenuItem>
-                <MenuItem value="dragon">Dragon</MenuItem>
-                <MenuItem value="fairy">Fairy</MenuItem>
-                <MenuItem value="electric">Electric</MenuItem>
-                <MenuItem value="normal">Normal</MenuItem>
-                <MenuItem value="psychic">Psychic</MenuItem>
-                <MenuItem value="bug">Bug</MenuItem>
-                <MenuItem value="fire">Fire</MenuItem>
-                <MenuItem value="poison">Poison</MenuItem>
-                <MenuItem value="steel">Steel</MenuItem>
-                <MenuItem value="fighting">Fighting</MenuItem>
-                <MenuItem value="flying">Flying</MenuItem>
-                <MenuItem value="dark">Dark</MenuItem>
-                <MenuItem value="ground">Ground</MenuItem>
-                <MenuItem value="ghost">Ghost</MenuItem>
-                <MenuItem value="rock">Rock</MenuItem>
+                <MenuItem value="Ice">Ice</MenuItem>
+                <MenuItem value="Water">Water</MenuItem>
+                <MenuItem value="Grass">Grass</MenuItem>
+                <MenuItem value="Dragon">Dragon</MenuItem>
+                <MenuItem value="Fairy">Fairy</MenuItem>
+                <MenuItem value="Electric">Electric</MenuItem>
+                <MenuItem value="Normal">Normal</MenuItem>
+                <MenuItem value="Psychic">Psychic</MenuItem>
+                <MenuItem value="Bug">Bug</MenuItem>
+                <MenuItem value="Fire">Fire</MenuItem>
+                <MenuItem value="Poison">Poison</MenuItem>
+                <MenuItem value="Steel">Steel</MenuItem>
+                <MenuItem value="Fighting">Fighting</MenuItem>
+                <MenuItem value="Flying">Flying</MenuItem>
+                <MenuItem value="Dark">Dark</MenuItem>
+                <MenuItem value="Ground">Ground</MenuItem>
+                <MenuItem value="Ghost">Ghost</MenuItem>
+                <MenuItem value="Rock">Rock</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -106,24 +106,24 @@ function FilterModal() {
                 <MenuItem value="">
                   <em>Please select</em>
                 </MenuItem>
-                <MenuItem value="ice">Ice</MenuItem>
-                <MenuItem value="water">Water</MenuItem>
-                <MenuItem value="grass">Grass</MenuItem>
-                <MenuItem value="dragon">Dragon</MenuItem>
-                <MenuItem value="fairy">Fairy</MenuItem>
-                <MenuItem value="electric">Electric</MenuItem>
-                <MenuItem value="normal">Normal</MenuItem>
-                <MenuItem value="psychic">Psychic</MenuItem>
-                <MenuItem value="bug">Bug</MenuItem>
-                <MenuItem value="fire">Fire</MenuItem>
-                <MenuItem value="poison">Poison</MenuItem>
-                <MenuItem value="steel">Steel</MenuItem>
-                <MenuItem value="fighting">Fighting</MenuItem>
-                <MenuItem value="flying">Flying</MenuItem>
-                <MenuItem value="dark">Dark</MenuItem>
-                <MenuItem value="ground">Ground</MenuItem>
-                <MenuItem value="ghost">Ghost</MenuItem>
-                <MenuItem value="rock">Rock</MenuItem>
+                <MenuItem value="Ice">Ice</MenuItem>
+                <MenuItem value="Water">Water</MenuItem>
+                <MenuItem value="Grass">Grass</MenuItem>
+                <MenuItem value="Dragon">Dragon</MenuItem>
+                <MenuItem value="Fairy">Fairy</MenuItem>
+                <MenuItem value="Electric">Electric</MenuItem>
+                <MenuItem value="Normal">Normal</MenuItem>
+                <MenuItem value="Psychic">Psychic</MenuItem>
+                <MenuItem value="Bug">Bug</MenuItem>
+                <MenuItem value="Fire">Fire</MenuItem>
+                <MenuItem value="Poison">Poison</MenuItem>
+                <MenuItem value="Steel">Steel</MenuItem>
+                <MenuItem value="Fighting">Fighting</MenuItem>
+                <MenuItem value="Flying">Flying</MenuItem>
+                <MenuItem value="Dark">Dark</MenuItem>
+                <MenuItem value="Ground">Ground</MenuItem>
+                <MenuItem value="Ghost">Ghost</MenuItem>
+                <MenuItem value="Rock">Rock</MenuItem>
               </Select>
             </FormControl>
           </div>
