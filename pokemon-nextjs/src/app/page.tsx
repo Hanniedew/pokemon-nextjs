@@ -100,14 +100,17 @@ export default function Home() {
           Add Pokémon
         </Link>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-4 ml-8 mr-8">
-        {visiblePokemons.map((pokemon: Pokemon) => (
-          <div key={pokemon.id} className="flex justify-center items-center">
-            <PokemonCard name={pokemon.name} id={pokemon.id} />
-          </div>
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-2xl mt-24 flex justify-center">Loading...</div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-4 ml-8 mr-8">
+          {visiblePokemons.map((pokemon: Pokemon) => (
+            <div key={pokemon.id} className="flex justify-center items-center">
+              <PokemonCard name={pokemon.name} id={pokemon.id} />
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="flex justify-center mt-8 mb-8">
         <Pagination
