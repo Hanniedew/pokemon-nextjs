@@ -11,13 +11,7 @@ import FormLabel from "@mui/material/FormLabel";
 import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 
-function PokemonEditPage({
-  params,
-}: {
-  params: {
-    name: string;
-  };
-}) {
+function PokemonAddPage() {
   const router = useRouter();
   const [name, setName] = useState("");
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +70,9 @@ function PokemonEditPage({
     setLegendary(event.target.value);
   };
 
-  const handleEditSubmit = async (e: { preventDefault: () => void }) => {
+  const [showError, setShowError] = useState(false);
+
+  const handleAddPokemon = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log("Editing Pokémon");
     console.log("New Name: " + name);
@@ -107,29 +103,39 @@ function PokemonEditPage({
       legendary,
     };
 
+    if (
+      name === "" ||
+      pokedex === "" ||
+      type1 === "" ||
+      Hp === "" ||
+      attack === "" ||
+      defense === "" ||
+      SpAttack === "" ||
+      SpDefense === "" ||
+      speed === "" ||
+      generation === "" ||
+      legendary === ""
+    ) {
+      setShowError(true);
+      return;
+    }
+    setShowError(false);
+
     try {
-      const response = await fetch(
-        `http://localhost:5000/pokemons/${params.name}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(pokemonData),
-        }
-      );
+      const response = await fetch(`http://localhost:5000/pokemons`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pokemonData),
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to update Pokémon");
+        throw new Error("Failed to add Pokémon");
       }
 
-      console.log("Pokémon updated successfully");
-      if (name) {
-        router.push(`/pokemons/${name}`);
-      } else {
-        router.push(`/pokemons/${params.name}`);
-      }
-
+      console.log("Pokémon added successfully");
+      router.push(`/`);
       // Optionally, handle success response
     } catch (error) {
       console.error("Error updating Pokémon:", error);
@@ -155,7 +161,7 @@ function PokemonEditPage({
   return (
     <div>
       <div className="flex justify-center mt-8 text-2xl">
-        Editing Details for {params.name}
+        Add New Pokemon
         {/* Name, Pokedex, Type 1, Type 2, Total: 318, HP: 45, Attack: 49, Defense: 49, Special Attack: 65,
         Special Defense: 65, Speed: 45, Generation: 1, Legendary: No */}
       </div>
@@ -166,28 +172,39 @@ function PokemonEditPage({
           <input
             id="pokemonName"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter new Pokémon name"
             value={name}
             onChange={handleNameChange}
           />
+          {showError && name === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
-
+        <div className="mb-4"></div>
         {/* Pokédex */}
         <div className="flex flex-col">
           <input
             id="pokedex"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New Pokédex"
             value={pokedex}
             onChange={handlePokedexChange}
           />
+          {showError && pokedex === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-2"></div>
 
         {/* Type 1 */}
         <div className="flex flex-col">
-          <FormControl sx={{ m: 1, minWidth: 120, marginBottom: 2 }}>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
             <Select
               value={type1}
               onChange={handleType1Change}
@@ -216,8 +233,14 @@ function PokemonEditPage({
               <MenuItem value="Ghost">Ghost</MenuItem>
               <MenuItem value="Rock">Rock</MenuItem>
             </Select>
+            {showError && type1 === "" && (
+              <div className="text-red-600 text-xs ml-1">
+                * Field cannot be empty
+              </div>
+            )}
           </FormControl>
         </div>
+        <div className="mb-2"></div>
 
         {/* Type 2 */}
         <div className="flex flex-col">
@@ -251,10 +274,10 @@ function PokemonEditPage({
               <MenuItem value="Ghost">Ghost</MenuItem>
               <MenuItem value="Rock">Rock</MenuItem>
             </Select>
+            <div className="text-xs ml-1 mb-2 italic">
+              Select NA to leave empty
+            </div>
           </FormControl>
-          <div className="text-xs ml-3 mb-2 italic">
-            Select NA to remove type 2
-          </div>
         </div>
 
         {/* HP */}
@@ -262,72 +285,108 @@ function PokemonEditPage({
           <input
             id="hp"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New HP"
             value={Hp}
             onChange={handleHpChange}
           />
+          {showError && Hp === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-4"></div>
 
         {/* Attack*/}
         <div className="flex flex-col">
           <input
             id="attack"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New Attack Points"
             value={attack}
             onChange={handleAttackChange}
           />
+          {showError && attack === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-4"></div>
 
         {/* Defense */}
         <div className="flex flex-col">
           <input
             id="defense"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New Defense Points"
             value={defense}
             onChange={handleDefenseChange}
           />
+          {showError && defense === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-4"></div>
 
         {/* Sp. Attack*/}
         <div className="flex flex-col">
           <input
             id="SpAttack"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New Sp.Attk Points"
             value={SpAttack}
             onChange={handleSpAttackChange}
           />
+          {showError && SpAttack === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-4"></div>
 
         {/* Sp. Defense */}
         <div className="flex flex-col">
           <input
             id="SpDefense"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New Sp.Def Points"
             value={SpDefense}
             onChange={handleSpDefenseChange}
           />
+          {showError && SpDefense === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-4"></div>
 
         {/* Speed */}
         <div className="flex flex-col">
           <input
             id="speed"
             type="text"
-            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none mb-4"
+            className="w-full px-3 py-2 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-md focus:outline-none"
             placeholder="Enter New Speed"
             value={speed}
             onChange={handleSpeedChange}
           />
+          {showError && speed === "" && (
+            <div className="text-red-600 text-xs ml-1">
+              * Field cannot be empty
+            </div>
+          )}
         </div>
+        <div className="mb-4"></div>
 
         {/* Generation */}
         <div className="flex flex-col">
@@ -348,6 +407,11 @@ function PokemonEditPage({
               <MenuItem value={5}>5</MenuItem>
               <MenuItem value={6}>6</MenuItem>
             </Select>
+            {showError && generation === "" && (
+              <div className="text-red-600 text-xs ml-1">
+                * Field cannot be empty
+              </div>
+            )}
           </FormControl>
         </div>
 
@@ -368,17 +432,22 @@ function PokemonEditPage({
                 label="False"
               />
             </RadioGroup>
+            {showError && legendary === "" && (
+              <div className="text-red-600 text-xs ml-1">
+                * Field cannot be empty
+              </div>
+            )}
           </FormControl>
         </div>
 
-        {/* Filter Submit Button */}
+        {/* Add Button */}
 
         <div className="flex flex-row mb-4">
           <button
             className="bg-teal-500 hover:bg-teal-800 text-white font-bold py-2 px-10 rounded-md mr-2"
-            onClick={handleEditSubmit}
+            onClick={handleAddPokemon}
           >
-            Edit
+            Add
           </button>
 
           <button
@@ -393,4 +462,4 @@ function PokemonEditPage({
   );
 }
 
-export default PokemonEditPage;
+export default PokemonAddPage;

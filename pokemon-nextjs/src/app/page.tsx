@@ -53,7 +53,7 @@ export default function Home() {
     setLegendary,
   } = useFilterContext();
 
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const constructQueryString = () => {
       const queryParams = [];
@@ -77,10 +77,10 @@ export default function Home() {
         }
         const jsonData = await response.json();
         setData(jsonData);
-        // setLoading(false);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        // setLoading(false);
+        setLoading(false);
       }
     }
 
@@ -93,9 +93,12 @@ export default function Home() {
 
       <div className="flex justify-center items-center mt-8 mb-8">
         <h1 className="text-2xl">Pokémons</h1>
-        <button className="ml-4 bg-violet-600 hover:bg-violet-800 text-white px-4 py-2 rounded-lg">
+        <Link
+          href="/add"
+          className="ml-4 bg-violet-600 hover:bg-violet-800 text-white px-4 py-2 rounded-lg"
+        >
           Add Pokémon
-        </button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-4 ml-8 mr-8">
