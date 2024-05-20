@@ -57,7 +57,6 @@ created with nextjs (react), tailwind, material UI, postgres, express, node
 
 - This page allows us to edit the Pokémon details
 
-![After Edit](Images/AfterEdit.PNG)
 
 - Details of the Pokémon has been updated
 
