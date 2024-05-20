@@ -7,45 +7,69 @@ created with nextjs (react), tailwind, material UI, postgres, express, node
 
 ### 1) Loading
 
-![Image Name](Images/AddNew.PNG)
+![Loading](Images/Loading.PNG)
+
+- Before there is a connection with the database, the page will show a loading screen
 
 ### 2) Main Page
 
 ![Main Page](Images/MainPage.PNG)
 
+- This is the main page
+
 ### 3) Search
 
-![Image Name](Images/Search.PNG)
+![Search](Images/Search.PNG)
+
+- We can search using the names of Pokémon 
 
 ### 4) Filter
 
-![Image Name](Images/FilterOptions.PNG)
+![Filter Options](Images/FilterOptions.PNG)
 
-![Image Name](Images/ApplyingFilters.PNG)
+- The filter panel allows for filtering of Pokémons based on some criterion
+
+![Applying Filters](Images/ApplyingFilters.PNG)
+
+- After applying the filters, the results will appear immediately
 
 ### 5) Add
 
-![Image Name](Images/AddPage.PNG)
+![Add Page](Images/AddPage.PNG)
 
-![Image Name](Images/AddNew.PNG)
+![Add New](Images/AddNew.PNG)
 
-![Image Name](Images/AfterAdd.PNG)
+- This page allows us to add new Pokémons
+
+![After Add](Images/AfterAdd.PNG)
+
+- We can search for our newly added Pokémon
 
 ### 6) More Details
 
-![Image Name](Images/MoreDetails.PNG)
+![More Details](Images/MoreDetails.PNG)
+
+- This page will show the statistics of each Pokémon
 
 ### 7) Edit
 
-![Image Name](Images/EditPage.PNG)
+![Edit Page](Images/EditPage.PNG)
 
-![Image Name](Images/AfterEdit.PNG)
+- This page allows us to edit the Pokémon details
 
-![Image Name](Images/EditResult.PNG)
+![After Edit](Images/AfterEdit.PNG)
+
+- Details of the Pokémon has been updated
+
+![Edit Result](Images/EditResult.PNG)
+
+- Pokémon with name "Bulb" has been renamed to "Bulbb" after editing
 
 ### 8) Delete
 
-![Image Name](Images/Delete.PNG)
+![Delete](Images/Delete.PNG)
+
+- We can delete the Pokémon and will no longer be found
 
 
 
