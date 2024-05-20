@@ -7,45 +7,45 @@ created with nextjs (react), tailwind, material UI, postgres, express, node
 
 ### 1) Loading
 
-![Image Name](Image/Loading.png)
+![Image Name](Images/AddNew.PNG)
 
 ### 2) Main Page
 
-![Main Page](/Image/MainPage.png)
+![Main Page](Images/MainPage.PNG)
 
 ### 3) Search
 
-![Image Name](Image/Search.png)
+![Image Name](Images/Search.PNG)
 
 ### 4) Filter
 
-![Image Name](Image/FilterOptions.png)
+![Image Name](Images/FilterOptions.PNG)
 
-![Image Name](Image/ApplyingFilters.png)
+![Image Name](Images/ApplyingFilters.PNG)
 
 ### 5) Add
 
-![Image Name](Image/AddPage.png)
+![Image Name](Images/AddPage.PNG)
 
-![Image Name](Image/AddNew.png)
+![Image Name](Images/AddNew.PNG)
 
-![Image Name](Image/AfterAdd.png)
+![Image Name](Images/AfterAdd.PNG)
 
 ### 6) More Details
 
-![Image Name](Image/MoreDetails.png)
+![Image Name](Images/MoreDetails.PNG)
 
 ### 7) Edit
 
-![Image Name](Image/EditPage.png)
+![Image Name](Images/EditPage.PNG)
 
-![Image Name](Image/AfterEdit.png)
+![Image Name](Images/AfterEdit.PNG)
 
-![Image Name](Image/EditResult.png)
+![Image Name](Images/EditResult.PNG)
 
 ### 8) Delete
 
-![Image Name](Image/Delete.png)
+![Image Name](Images/Delete.PNG)
 
 
 
