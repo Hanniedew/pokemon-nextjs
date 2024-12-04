@@ -24,6 +24,7 @@ interface Pokemon {
   legendary: boolean;
 }
 
+// Main page
 export default function Home() {
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState(""); // for search bar
